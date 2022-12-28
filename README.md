@@ -15,7 +15,7 @@ The diagram shows flow of how we implement User Registration, User Login and Aut
 
 You can have an overview of our Spring Boot Server with the diagram below:
 
-![spring-boot-jwt-authentication-spring-security-architecture](spring-boot-jwt-authentication-spring-security-architecture.png)
+[//]: # (![spring-boot-jwt-authentication-spring-security-architecture]&#40;spring-boot-jwt-authentication-spring-security-architecture.png&#41;)
 
 For more detail, please visit:
 > [Secure Spring Boot App with Spring Security & JWT Authentication](https://bezkoder.com/spring-boot-jwt-authentication/)

@@ -19,9 +19,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /*– AuthEntryPointExceptionHandler will catch authentication error.
 
-If the user requests a secure HTTP resource without being authenticated,
- AuthEntryPointExceptionHandler will be called. At this time, an AuthenticationException is thrown,
- commence() method on the entry point is triggered:*/
+If the user requests a secure HTTP resource without being authenticated, AuthEntryPointExceptionHandler will be called.
+At this time, an AuthenticationException is thrown, commence() method on the entry point is triggered:*/
 
 /*Now we create AuthEntryPointExceptionHandler class that implements AuthenticationEntryPoint interface.
 Then we override the commence() method.
@@ -31,12 +30,10 @@ public class AuthEntryPointExceptionHandler implements AuthenticationEntryPoint 
 
     private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointExceptionHandler.class);
 
-    /*
-    AuthEntryPointExceptionHandler handles AuthenticationException.
-     */
+    /* AuthEntryPointExceptionHandler handles AuthenticationException. */
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
-            throws IOException, ServletException {
+            throws IOException {
         logger.error("Unauthorized error: {}", authException.getMessage());
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

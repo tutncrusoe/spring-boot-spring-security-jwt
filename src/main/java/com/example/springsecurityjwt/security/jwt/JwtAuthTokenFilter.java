@@ -18,7 +18,12 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-/*OncePerRequestFilter makes a single execution for each request to our API. It provides a doFilterInternal() method that we will implement parsing & validating JWT, loading User details (using UserDetailsService), checking Authorization (using UsernamePasswordAuthenticationToken).*/
+/*JwtAuthTokenFilter validates the Token using JwtProvider:*/
+/*OncePerRequestFilter makes a single execution for each request to our API.
+It provides a doFilterInternal() method that we will implement parsing & validating JWT, loading User details (using UserDetailsService), checking Authorization (using UsernamePasswordAuthenticationToken).
+*JwtAuthTokenFilter extracts username/password from the received token using JwtProvider, then based on the extracted data, JwtAuthTokenFilter:
+        – creates a AuthenticationToken (that implements Authentication)
+        – uses the AuthenticationToken as Authentication object and stores it in the SecurityContext for future filter uses (e.g: Authorization filters). */
 public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthTokenFilter.class);
@@ -35,8 +40,8 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
         try {
             /*
             JwtAuthTokenFilter extracts username/password from the received token using JwtProvider, then based on the extracted data, JwtAuthTokenFilter:
-        – creates a AuthenticationToken (that implements Authentication)
-        – uses the AuthenticationToken as Authentication object and stores it in the SecurityContext for future filter uses (e.g: Authorization filters).
+        – creates a UsernamePasswordAuthenticationToken (that implements Authentication)
+        – uses the UsernamePasswordAuthenticationToken as Authentication object and stores it in the SecurityContext for future filter uses (e.g: Authorization filters).
 
         In this tutorial, we use UsernamePasswordAuthenticationToken:
              */
