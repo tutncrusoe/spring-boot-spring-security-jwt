@@ -61,6 +61,7 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
                                 userDetails,
                                 null,
                                 userDetails.getAuthorities());
+
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 // Store Authentication object in SecurityContext

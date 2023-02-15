@@ -61,10 +61,13 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     }
 
     // Step 2
-    /* DaoAuthenticationProvider works well with form-based logins or HTTP Basic authentication which submits a simple username/password authentication request.
-    It authenticates the User simply by comparing the password submitted in a UsernamePasswordAuthenticationToken against the one loaded by the UserDetailsService (as a DAO):
+    /* DaoAuthenticationProvider works well with form-based logins or HTTP Basic authentication
+    which submits a simple username/password authentication request.
+    It authenticates the User simply by comparing the password
+    submitted in a UsernamePasswordAuthenticationToken against the one loaded by the UserDetailsService (as a DAO):
 
-    DaoAuthenticationProvider also uses UserDetailsService for getting UserDetails object. This is the common approach in which we only pass a String-based ‘username’ argument and returns a UserDetails: */
+    DaoAuthenticationProvider also uses UserDetailsService for getting UserDetails object.
+    This is the common approach in which we only pass a String-based ‘username’ argument and returns a UserDetails: */
     @Bean
     protected DaoAuthenticationProvider authenticationProvider() {
         System.out.println("authenticationProvider()");
@@ -85,17 +88,19 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     }
 
     // Step 0
-    /* Receive HTTP Request: When a HTTP request comes (from a browser, a web service client, an HttpInvoker or an AJAX application – Spring doesn't care),
-    it will go through a chain of filters for authentication and authorization purposes.
+    /* Receive HTTP Request: When a HTTP request comes (from a browser, a web service client
+    , an HttpInvoker or an AJAX application – Spring doesn't care)
+    , it will go through a chain of filters for authentication and authorization purposes.
 
-    So, it is also true for a User Authentication request, that filter chain will be applied until relevant Authentication Filter is found.
+    So, it is also true for a User Authentication request
+    , that filter chain will be applied until relevant Authentication Filter is found.
 
     It tells Spring Security how we configure CORS and CSRF,
-        when we want to require all users to be authenticated or not,
-        which filter (JwtAuthTokenFilter) and when we want it to work (filter before UsernamePasswordAuthenticationFilter),
-        which Exception Handler is chosen (AuthEntryPointExceptionHandler). */
-    /* To help Spring Security know when we want to require all users to be authenticated,
-    which Exception Handler to be chosen, which filter and when we want it to work. */
+when we want to require all users to be authenticated or not,
+which filter (JwtAuthTokenFilter) and when we want it to work (filter JwtAuthTokenFilter before UsernamePasswordAuthenticationFilter),
+which Exception Handler is chosen (AuthEntryPointExceptionHandler). */
+    /* To help Spring Security know when we want to require all users to be authenticated
+    , which Exception Handler to be chosen, which filter and when we want it to work. */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         System.out.println("filterChain()");
@@ -118,8 +123,10 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 
     // Step 4
     /* Delegate AuthenticationToken for AuthenticationManager:
-    - After AuthenticationToken object was created, it will be used as input parameter for authenticate() method of the AuthenticationManager:
-    - We can see that AuthenticationManager is just an interface, the default implementation in Spring Security is ProviderManager:
+    - After AuthenticationToken object was created
+    , it will be used as input parameter for authenticate() method of the AuthenticationManager:
+    - We can see that AuthenticationManager is just an interface
+    , the default implementation in Spring Security is ProviderManager:
 
     AuthenticationManager has a DaoAuthenticationProvider (with help of UserDetailsService & PasswordEncoder) to validate UsernamePasswordAuthenticationToken object.
     If successful, AuthenticationManager returns a fully populated Authentication object (including granted authorities).*/
